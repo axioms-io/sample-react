@@ -1,10 +1,13 @@
 import React from "react";
 import "./custom.scss";
-import { Container, Jumbotron, Button } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import Header from "./components/Header";
 import { Switch, Route, Link } from "react-router-dom";
 import AuthContext from "./AuthContext";
-import { Columns, BoxArrowRight } from "react-bootstrap-icons";
+import Home from "./views/Home";
+import Login from "./views/Login";
+import Callback from "./views/Callback";
+import Dashboard from "./views/Dashboard";
 import { Auth } from "@axioms/web-js";
 
 // Auth
@@ -25,6 +28,15 @@ function App() {
         <Container>
           <Header />
           <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/callback">
+              <Callback />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
             <Route path="/">
               <Home />
             </Route>
@@ -35,28 +47,6 @@ function App() {
   );
 }
 
-function Home() {
-  return (
-    <Jumbotron>
-      <h1 className="display-3">Axioms</h1>
-      <p className="lead">Sample React App</p>
-      {auth.session.is_authenticated() ? (
-        <div>
-          <p>Please view dashboard for more actions.</p>
-          <Button variant="primary">
-            <Columns className="mr-1 mb-1" size={20} /> Dashboard
-          </Button>
-        </div>
-      ) : (
-        <div>
-          <p>To view dashboard please login.</p>
-          <Button variant="primary">
-            <BoxArrowRight className="mr-1 mb-1" size={20} /> Login
-          </Button>
-        </div>
-      )}
-    </Jumbotron>
-  );
-}
+
 
 export default App;

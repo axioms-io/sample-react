@@ -1,12 +1,13 @@
-import React from 'react';
+import React from "react";
 import { Columns, Power, BoxArrowRight } from "react-bootstrap-icons";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import AuthContext from "../AuthContext";
 
 class Header extends React.Component {
   state = {};
   render() {
     return (
-      <Navbar expand="lg">
+      <Navbar expand="lg" className="mb-5">
         <Navbar.Brand href="/">
           <img
             src="https://axioms.io/demo/oats.svg"
@@ -23,22 +24,8 @@ class Header extends React.Component {
               <Columns className="mr-1 mb-1" size={20} />
               Dashboard
             </Nav.Link>
-            <Nav.Link href="/logout">
-              <Power className="mr-1 mb-1" size={20} />
-              Logout
-            </Nav.Link>
-            <Nav.Link href="/login">
-              <BoxArrowRight className="mr-1 mb-1" size={20} />
-              Login
-            </Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.2" class="ml-auto">
-                Update profile
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
-                Change Password
-              </NavDropdown.Item>
-            </NavDropdown>
+            <AccountMenu />
+            <SettingsMenu />
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -46,4 +33,42 @@ class Header extends React.Component {
   }
 }
 
+function AccountMenu() {
+  const auth = React.useContext(AuthContext);
+  return (
+    <div>
+      {auth.session.is_authenticated() ? (
+        <Nav.Link href="/logout">
+          <Power className="mr-1 mb-1" size={20} />
+          Logout
+        </Nav.Link>
+      ) : (
+        <Nav.Link href="/login">
+          <BoxArrowRight className="mr-1 mb-1" size={20} />
+          Login
+        </Nav.Link>
+      )}
+    </div>
+  );
+}
+
+function SettingsMenu() {
+  const auth = React.useContext(AuthContext);
+  const id_payload = auth.session.id_payload;
+
+  return (
+    <div>
+      {auth.session.is_authenticated() ? (
+        <NavDropdown title={ <img src={id_payload.picture } alt={id_payload.given_name} />} id="basic-nav-dropdown">
+              <NavDropdown.Item href={auth.get_user_settings_url()}>
+                Update profile
+              </NavDropdown.Item>
+              <NavDropdown.Item href={auth.get_user_password_url()}>
+                Change Password
+              </NavDropdown.Item>
+            </NavDropdown>
+      ) : false}
+    </div>
+  );
+}
 export default Header;
