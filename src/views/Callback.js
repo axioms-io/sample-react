@@ -3,7 +3,8 @@ import AuthContext from "../AuthContext";
 
 function Callback() {
     const auth = React.useContext(AuthContext);
-    return auth.process_authorize_response();
+    auth.process_authorize_response();
+    return null;
 }
 
 export default Callback;

@@ -3,7 +3,8 @@ import AuthContext from "../AuthContext";
 
 function Login() {
     const auth = React.useContext(AuthContext);
-    return auth.login_with_redirect();
+    auth.login_with_redirect();
+    return null;
 }
 
 export default Login;
