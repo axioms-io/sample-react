@@ -2,10 +2,11 @@ import React from "react";
 import "./custom.scss";
 import { Container} from "react-bootstrap";
 import Header from "./components/Header";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import Home from "./views/Home";
 import Login from "./views/Login";
+import Logout from "./views/Logout";
 import Callback from "./views/Callback";
 import Dashboard from "./views/Dashboard";
 import { Auth } from "@axioms/web-js";
@@ -31,12 +32,15 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+            <PrivateRoute path="/logout">
+              <Logout />
+            </PrivateRoute>
             <Route path="/callback">
               <Callback />
             </Route>
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard />
-            </Route>
+            </PrivateRoute>
             <Route path="/">
               <Home />
             </Route>
@@ -48,5 +52,29 @@ function App() {
 }
 
 
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.session.is_authenticated() ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+function $role(required_scopes) {
+    return auth.session.hasAccessScope(required_scopes);
+}
 
 export default App;
+export { $role }; 
