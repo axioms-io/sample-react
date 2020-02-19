@@ -34,10 +34,10 @@ class Header extends React.Component {
 }
 
 function AccountMenu() {
-  const auth = React.useContext(AuthContext);
+  const $auth = React.useContext(AuthContext);
   return (
     <div>
-      {auth.session.is_authenticated() ? (
+      {$auth.session.is_authenticated() ? (
         <Nav.Link href="/logout">
           <Power className="mr-1 mb-1" size={20} />
           Logout
@@ -53,17 +53,17 @@ function AccountMenu() {
 }
 
 function SettingsMenu() {
-  const auth = React.useContext(AuthContext);
-  const id_payload = auth.session.id_payload;
+  const $auth = React.useContext(AuthContext);
+  const id_payload = $auth.session.id_payload;
 
   return (
     <div>
-      {auth.session.is_authenticated() ? (
+      {$auth.session.is_authenticated() ? (
         <NavDropdown title={ <img src={id_payload.picture } alt={id_payload.given_name} />} id="basic-nav-dropdown">
-              <NavDropdown.Item href={auth.get_user_settings_url()}>
+              <NavDropdown.Item href={$auth.get_user_settings_url()}>
                 Update profile
               </NavDropdown.Item>
-              <NavDropdown.Item href={auth.get_user_password_url()}>
+              <NavDropdown.Item href={$auth.get_user_password_url()}>
                 Change Password
               </NavDropdown.Item>
             </NavDropdown>

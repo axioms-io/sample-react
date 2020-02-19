@@ -4,12 +4,12 @@ import { Columns, BoxArrowRight } from "react-bootstrap-icons";
 import AuthContext from "../AuthContext";
 
 function Home() {
-  const auth = React.useContext(AuthContext);
+  const $auth = React.useContext(AuthContext);
   return (
     <Jumbotron>
       <h1 className="display-3">Axioms</h1>
       <p className="lead">Sample React App</p>
-      {auth.session.is_authenticated() ? (
+      {$auth.session.is_authenticated() ? (
         <div>
           <p>Please view dashboard for more actions.</p>
           <Button variant="primary" href="/dashboard">

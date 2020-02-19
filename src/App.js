@@ -12,7 +12,7 @@ import Dashboard from "./views/Dashboard";
 import { Auth } from "@axioms/web-js";
 
 // Auth
-const auth = new Auth({
+const $auth = new Auth({
   axioms_domain: process.env.REACT_APP_Axioms_Domain,
   response_type: "id_token token",
   redirect_uri: process.env.REACT_APP_Redirect_Uri,
@@ -24,7 +24,7 @@ const auth = new Auth({
 
 function App() {
   return (
-    <AuthContext.Provider value={auth}>
+    <AuthContext.Provider value={$auth}>
       <div className="App">
         <Container>
           <Header />
@@ -57,7 +57,7 @@ function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        auth.session.is_authenticated() ? (
+        $auth.session.is_authenticated() ? (
           children
         ) : (
           <Redirect
@@ -73,7 +73,7 @@ function PrivateRoute({ children, ...rest }) {
 }
 
 function $role(required_scopes) {
-    return auth.session.hasAccessScope(required_scopes);
+    return $auth.session.hasAccessScope(required_scopes);
 }
 
 export default App;

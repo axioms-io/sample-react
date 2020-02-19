@@ -5,8 +5,8 @@ import AuthContext from "../AuthContext";
 import {$role} from "../App";
 
 function Dashboard() {
-  const auth = React.useContext(AuthContext);
-  const payload = auth.session.id_payload;
+  const $auth = React.useContext(AuthContext);
+  const payload = $auth.session.id_payload;
   return (
     <Jumbotron>
       <h1 className="display-3"> {payload.given_name} </h1>{" "}
@@ -15,7 +15,7 @@ function Dashboard() {
       {$role(['profile']) &&
       <Button
         variant="primary"
-        href={auth.get_user_settings_url()}
+        href={$auth.get_user_settings_url()}
         target="_blank"
         className="mr-1"
       >
@@ -25,7 +25,7 @@ function Dashboard() {
       {$role(['profile']) &&
       <Button
         variant="danger"
-        href={auth.get_user_password_url()}
+        href={$auth.get_user_password_url()}
         target="_blank"
         className="mr-1"
       >
