@@ -14,7 +14,7 @@ import { Auth } from "@axioms/web-js";
 // Auth
 const $auth = new Auth({
   axioms_domain: process.env.REACT_APP_Axioms_Domain,
-  response_type: "code",
+  response_type: process.env.REACT_APP_Response_Type,
   redirect_uri: process.env.REACT_APP_Redirect_Uri,
   post_logout_uri: process.env.REACT_APP_Post_Logout_Uri,
   client_id: process.env.REACT_APP_Client_Id,
