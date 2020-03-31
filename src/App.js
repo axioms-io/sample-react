@@ -1,6 +1,6 @@
 import React from "react";
 import "./custom.scss";
-import { Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import { Switch, Route, Redirect } from "react-router-dom";
 import AuthContext from "./AuthContext";
@@ -14,7 +14,7 @@ import { Auth } from "@axioms/web-js";
 // Auth
 const $auth = new Auth({
   axioms_domain: process.env.REACT_APP_Axioms_Domain,
-  response_type: "id_token token",
+  response_type: "code",
   redirect_uri: process.env.REACT_APP_Redirect_Uri,
   post_logout_uri: process.env.REACT_APP_Post_Logout_Uri,
   client_id: process.env.REACT_APP_Client_Id,
@@ -31,26 +31,25 @@ function App() {
           <Switch>
             <Route path="/login">
               <Login />
-            </Route>
+            </Route>{" "}
             <PrivateRoute path="/logout">
               <Logout />
-            </PrivateRoute>
+            </PrivateRoute>{" "}
             <Route path="/callback">
               <Callback />
-            </Route>
+            </Route>{" "}
             <PrivateRoute path="/dashboard">
               <Dashboard />
-            </PrivateRoute>
+            </PrivateRoute>{" "}
             <Route path="/">
               <Home />
-            </Route>
-          </Switch>
-        </Container>
-      </div>
+            </Route>{" "}
+          </Switch>{" "}
+        </Container>{" "}
+      </div>{" "}
     </AuthContext.Provider>
   );
 }
-
 
 function PrivateRoute({ children, ...rest }) {
   return (
@@ -63,7 +62,9 @@ function PrivateRoute({ children, ...rest }) {
           <Redirect
             to={{
               pathname: "/login",
-              state: { from: location }
+              state: {
+                from: location
+              }
             }}
           />
         )
@@ -73,8 +74,8 @@ function PrivateRoute({ children, ...rest }) {
 }
 
 function $role(required_scopes) {
-    return $auth.session.hasAccessScope(required_scopes);
+  return $auth.session.hasAccessScope(required_scopes);
 }
 
 export default App;
-export { $role }; 
+export { $role };

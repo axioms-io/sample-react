@@ -10,7 +10,7 @@ class Header extends React.Component {
       <Navbar expand="lg" className="mb-5">
         <Navbar.Brand href="/">
           <img
-            src="https://axioms.io/demo/oats.svg"
+            src="https://static.axioms.io/demo/oats.svg"
             width="40"
             height="40"
             className="d-inline-block align-top"

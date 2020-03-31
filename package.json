@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "@axioms/web-js": "^0.1.3",
+        "@axioms/web-js": "^0.1.9",
         "bootstrap": "^4.4.1",
         "jquery": "^3.4.1",
         "react": "^16.12.0",
