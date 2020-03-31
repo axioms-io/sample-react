@@ -29,10 +29,13 @@ Either update `.env.production` or create a `.env.local` to add following config
 ```
 REACT_APP_Client_Id=<Your_Client_ID>
 REACT_APP_Response_Type=code
+REACT_APP_Scope=openid profile
 REACT_APP_Axioms_Domain=<Your_Slug>.axioms.io
 REACT_APP_Redirect_Uri=https://<Your-App-Domain>/callback
 REACT_APP_Post_Logout_Uri=https://<Your-App-Domain>/login
 ```
+
+We recommend to use `code` response type (Authorization code flow with PKCE). For more supported response type options please review  `web-js` documentation.
 
 ### Compile and hot-reload for local development
 ```

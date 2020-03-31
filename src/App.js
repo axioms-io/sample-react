@@ -18,7 +18,7 @@ const $auth = new Auth({
   redirect_uri: process.env.REACT_APP_Redirect_Uri,
   post_logout_uri: process.env.REACT_APP_Post_Logout_Uri,
   client_id: process.env.REACT_APP_Client_Id,
-  scope: "openid profile",
+  scope: process.env.REACT_APP_Scope,
   post_login_navigate: "/dashboard"
 });
 
