@@ -1,6 +1,6 @@
 import React from "react";
 import { Jumbotron, Button } from "react-bootstrap";
-import { GearWideConnected, ShieldLock, DocumentText } from "react-bootstrap-icons";
+import { GearWideConnected, ShieldLock, CardText } from "react-bootstrap-icons";
 import AuthContext from "../AuthContext";
 import {$role} from "../App";
 
@@ -39,7 +39,7 @@ function Dashboard() {
         target="_blank"
         className="mr-1"
       >
-        <DocumentText className="mr-1 mb-1" size={20} /> Manage posts{" "} 
+        <CardText className="mr-1 mb-1" size={20} /> Manage posts{" "} 
         </Button>
       }
       {$role(['post:admin', 'tag:admin']) &&
@@ -49,7 +49,7 @@ function Dashboard() {
         target="_blank"
         className="mr-1"
       >
-        <DocumentText className="mr-1 mb-1" size={20} /> Manage tags{" "} 
+        <CardText className="mr-1 mb-1" size={20} /> Manage tags{" "} 
         </Button>
       }
     </Jumbotron>
