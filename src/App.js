@@ -19,7 +19,7 @@ const $auth = new Auth({
   post_logout_uri: process.env.REACT_APP_Post_Logout_Uri,
   client_id: process.env.REACT_APP_Client_Id,
   scope: process.env.REACT_APP_Scope,
-  post_login_navigate: "/dashboard"
+  post_login_navigate: process.env.REACT_APP_Post_Login_Navigate
 });
 
 function App() {
