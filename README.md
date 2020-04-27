@@ -71,13 +71,13 @@ Simply click following button and provide your `.env` variables,
 
 **OR**
 
-1. Simply fork this repository and connect your Github project in Netlify.
+1. Fork this repository and connect your Github project in Netlify.
 
 2. Configure your build command and output directory and you are good to go.
 
 
 ### Build Settings
-Build command: `yarn build` or `npm build`
+Build command: `npm build`
 
 Publish directory: `build/`
 
