@@ -77,7 +77,7 @@ Simply click following button and provide your `.env` variables,
 
 
 ### Build Settings
-Build command: `npm build`
+Build command: `npm run build`
 
 Publish directory: `build/`
 
